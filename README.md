@@ -16,9 +16,3 @@ Esta es una aplicación web desarrollada con Flask y MySQL para la gestión inte
 - Python 3.x
 - Flask
 - MySQL
-
-## Instalación
-
-1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/TU-USUARIO/Proyecto-Flask.git
