@@ -1,0 +1,25 @@
+<!-- edit_clientefijo.html -->
+{% extends "base.html" %}
+
+{% block title %}Editar Cliente Fijo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Editar Cliente Fijo</h1>
+    <form method="POST" action="{{ url_for('edit_fixed_client', id=client[0]) }}" class="form-style">
+        <label for="fullname">Nombre Completo:</label>
+        <input type="text" id="fullname" name="fullname" value="{{ client[1] }}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ client[3] }}" required><br>
+        
+        <label for="phone">Teléfono:</label>
+        <input type="text" id="phone" name="phone" value="{{ client[2] }}" required><br>
+
+        <input type="submit" value="Actualizar Cliente Fijo" class="button">
+    </form>
+
+    <br>
+    <a href="{{ url_for('clientes_fijos') }}" class="button">Volver a la lista de clientes fijos</a>
+</div>
+{% endblock %}

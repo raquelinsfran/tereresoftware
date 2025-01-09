@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="height: 90vh;">
+    <h1 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #6a1b9a; font-size: 2rem; font-weight: 600;">Dashboard</h1>
+
+    <!-- Mensaje de alerta si hay más de 10 proyectos activos -->
+    {% if active_projects > 10 %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            Hay más de 10 proyectos activos, ¡actúa rápido!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
+    <div class="row w-100 mb-3 justify-content-around">
+        <div class="col-6 col-md-3 mb-2 px-2">
+            <div class="card text-center shadow-sm rounded" style="height: 100px;">
+                <div class="card-header bg-primary text-white rounded-top">
+                    <h6 class="mb-0">Total de Clientes Nuevos</h6>
+                </div>
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <h6 class="card-title mb-0" style="font-size: 1.3rem;">{{ total_contacts }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-2 px-2">
+            <div class="card text-center shadow-sm rounded" style="height: 100px;">
+                <div class="card-header bg-success text-white rounded-top">
+                    <h6 class="mb-0">Total de Clientes Fijos</h6>
+                </div>
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <h6 class="card-title mb-0" style="font-size: 1.3rem;">{{ total_fixed_clients }}</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3 mb-2 px-2">
+            <div class="card text-center shadow-sm rounded" style="height: 100px;">
+                <div class="card-header bg-warning text-white rounded-top">
+                    <h6 class="mb-0">Proyectos Activos</h6>
+                </div>
+                <div class="card-body d-flex align-items-center justify-content-center">
+                    <h6 class="card-title mb-0" style="font-size: 1.3rem;">{{ active_projects }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gráfico de Proyectos por Cliente -->
+    <div class="chart-container w-100 px-3" style="height: 200px;">
+        <h6 class="text-center mb-2" style="font-family: 'Poppins', sans-serif; color: #6a1b9a; font-size: 1.2rem;">Proyectos por Cliente</h6>
+        <canvas id="projectsChart" style="max-height: 180px;"></canvas>
+    </div>
+</div>
+
+<!-- Incluir Chart.js desde CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Script de Chart.js -->
+<script>
+    window.onload = function() {
+        const ctx = document.getElementById('projectsChart').getContext('2d');
+        
+        // Pasar los datos desde el template de Flask
+        const labels = {{ project_labels | tojson | safe }};  // Etiquetas (ID de Cliente)
+        const data = {{ project_data | tojson | safe }};  // Cantidad de proyectos por cliente
+        
+        const projectsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Proyectos por Cliente',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                maintainAspectRatio: false
+            }
+        });
+    };
+
+    // Funciones de acción para los botones
+    document.getElementById('btnFiltrar').addEventListener('click', function() {
+        alert('Filtrando proyectos...');
+        // Aquí podrías redirigir a una nueva página o mostrar un modal con opciones de filtro
+    });
+
+    document.getElementById('btnVerClientes').addEventListener('click', function() {
+        alert('Mostrando clientes...');
+        // Aquí podrías redirigir a una página de clientes o abrir un modal
+    });
+</script>
+{% endblock %}

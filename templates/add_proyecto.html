@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Añadir Proyecto{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; font-size: 24px; margin-bottom: 20px;">Añadir Proyecto para el Cliente Fijo</h1>
+    <form action="{{ url_for('add_proyecto', cliente_id=cliente_id) }}" method="POST" style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 10px; background-color: #f9f9f9;">
+        <div style="margin-bottom: 15px;">
+            <label for="proyecto" style="display: block; font-weight: bold; margin-bottom: 5px;">Nombre del Proyecto:</label>
+            <input 
+                type="text" 
+                name="proyecto" 
+                required 
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="fecha_entrega" style="display: block; font-weight: bold; margin-bottom: 5px;">Fecha de Entrega:</label>
+            <input 
+                type="date" 
+                name="fecha_entrega" 
+                required 
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label for="monto_proyecto" style="display: block; font-weight: bold; margin-bottom: 5px;">Monto $:</label>
+            <input 
+                type="number" 
+                step="0.01" 
+                name="monto_proyecto" 
+                required 
+                style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                Añadir Proyecto
+            </button>
+        </div>
+    </form>
+
+    <!-- Botón para volver a la lista de clientes -->
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{{ url_for('clientes_fijos') }}" class="button" style="padding: 10px 20px; border-radius: 5px; background-color: #007bff; color: white; text-decoration: none;">
+            Volver a la Lista de Clientes
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Añadir Cliente Fijo{% endblock %}
+
+{% block content %}
+<h1>Añadir Nuevo Cliente Fijo</h1>
+<form action="{{ url_for('add_fixed_client') }}" method="POST" class="form-style"> 
+    <label for="fullname">Nombre Completo:</label><br>
+    <input type="text" id="fullname" name="fullname" required><br><br>
+
+    <label for="phone">Teléfono:</label><br>
+    <input type="text" id="phone" name="phone" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <input type="submit" value="Añadir Cliente Fijo" class="button">
+</form>
+{% endblock %}

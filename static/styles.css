@@ -1,0 +1,362 @@
+/* Estilos básicos */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Estilo de la barra de navegación */
+.navbar {
+    background: linear-gradient(135deg, #6a1b9a, #ff4081);
+    padding: 20px 0; /* Ajustamos la altura de la barra */
+}
+
+/* Estilo de contenedor de la barra de navegación */
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.navbar-brand {
+    font-family: 'Pacifico', cursive;
+    color: #000000 !important; /* Forzar color negro */
+    font-size: 2rem !important; /* Forzar tamaño de fuente */
+}
+
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-brand img {
+    width: 40px; /* Ajustamos el tamaño del logo */
+    height: 40px ;
+    margin-right: 5px;
+}
+
+/* Estilo de la navegación */
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav li {
+    margin-left: 25px; /* Aumentamos el espacio entre los elementos */
+}
+
+.nav a {
+    color: #0f0f0f;
+    text-decoration: none;
+    font-size: 22px; /* Aumentamos el tamaño de la fuente para los enlaces */
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 10px 15px; /* Aumentamos el padding para que los enlaces sean más grandes */
+}
+
+.nav a:hover {
+    background: rgba(221, 214, 214, 0.2);
+    border-radius: 5px;
+}
+
+.nav a.active {
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.nav a i {
+    margin-right: 8px; /* Aumentamos el margen entre el ícono y el texto */
+}
+
+.navbar-nav {
+    font-size: 18px; /* Aumentamos el tamaño de los enlaces */
+}
+
+.nav-link {
+    color: white !important;
+    padding: 12px 20px; /* Aumentamos el padding para hacer los enlaces más grandes */
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.navbar-nav i {
+    margin-right: 8px; /* Ajustamos el margen entre el ícono y el texto */
+}
+
+/* Estilo del contenedor principal */
+.container {
+    flex: 1;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+
+/* Estilo del título */
+.title {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo de la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0; 
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;               
+    text-align: left;
+}
+
+th {
+    background-color: #f8f8f8;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo hover para celdas de la tabla */
+table td:hover, table th:hover {
+    background-color: #dda6cc;  
+    color: #000;                
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);  
+    transform: scale(1.05);     
+    border: 1px solid #000000;  
+    transition: all 0.3s ease;  
+    cursor: pointer;            
+}
+
+/* Estilo de enlaces */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo de botones */
+a.button {
+    display: inline-block;
+    padding: 12px 20px;          
+    background-color: #cc00ff; 
+    color: white; 
+    text-align: center;
+    text-decoration: none; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+a.button:hover {
+    background-color: #7a00b3; 
+    transform: scale(1.05); 
+}
+
+a.button:active {
+    background-color: #5c0080; 
+    transform: scale(0.95); 
+}
+
+/* Estilo de formularios */
+.form-style {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-style label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.form-style input[type="text"],
+.form-style input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.form-style input[type="submit"] {
+    width: auto;
+    padding: 12px 25px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-style input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.form-style input[type="submit"]:active {
+    background-color: #1e7e34;
+}
+
+/* Estilo de botones */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #cc00ff;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none; 
+    cursor: pointer; 
+}
+
+.button:hover {
+    background-color: #7a00b3;
+    transform: scale(1.05);
+}
+
+.button:active {
+    background-color: #5c0080;
+    transform: scale(0.95);
+}
+
+.button-delete {
+    background-color: #ff4d4d; 
+}
+
+.button-delete:hover {
+    background-color: #e60000;
+}
+
+.button-delete:active {
+    background-color: #b30000; 
+}
+
+/* Efecto hover y sombra en las tarjetas */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Colores gradientes para las cabeceras de las tarjetas */
+.card-header.bg-primary {
+    background: linear-gradient(135deg, #6a1b9a, #ff4081);
+}
+
+.card-header.bg-success {
+    background: linear-gradient(135deg, #4caf50, #8bc34a);
+}
+
+.card-header.bg-warning {
+    background: linear-gradient(135deg, #ff9800, #ffc107);
+}
+
+/* Estilo del footer */
+.footer {
+    background: linear-gradient(135deg, #6a1b9a, #ff4081); 
+    color: #fff;
+    padding: 10px 0;            
+    text-align: center;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2px 0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.footer-links {
+    margin: 5px 0; 
+}
+
+.footer-links h4 {
+    margin-bottom: 5px;
+    font-size: 16px;            
+}
+
+.footer-links ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex; 
+    justify-content: center; 
+}
+
+.footer-links li {
+    margin: 0 10px; 
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 14px; 
+}
+
+.footer-links a:hover {
+    color: #f1f1f1;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Estilo de la sección de contacto */
+.contact-form input[type="submit"] {
+    background-color: #28a745;
+    color: white;
+}

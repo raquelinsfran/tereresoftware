@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Generar Reporte{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Generar Reporte</h1>
+    <form action="{{ url_for('reportes') }}" method="POST" class="bg-light p-4 rounded shadow">
+        <!-- Seleccionar Cliente -->
+        <div class="form-group">
+            <label for="cliente">Seleccionar Cliente:</label>
+            <select id="cliente" name="cliente" class="form-control" required>
+                <option value="" disabled selected>Selecciona un cliente</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente[0] }}">{{ cliente[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <!-- Seleccionar Proyecto -->
+        <div class="form-group">
+            <label for="proyecto">Seleccionar Proyecto:</label>
+            <select id="proyecto" name="proyecto" class="form-control" required>
+                <option value="" disabled selected>Selecciona un proyecto</option>
+            </select>
+        </div>
+
+        <!-- Seleccionar Estado -->
+        <div class="form-group">
+            <label for="estado">Estado del Proyecto:</label>
+            <select id="estado" name="estado" class="form-control" required>
+                <option value="En Proceso" selected>En Proceso</option>
+                <option value="Finalizado">Finalizado</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Generar Reporte</button>
+    </form>
+</div>
+
+<script>
+    // Escuchar cambios en el select de cliente
+    document.getElementById('cliente').addEventListener('change', function () {
+        const clienteId = this.value;
+
+        // Realizar una solicitud AJAX para obtener los proyectos
+        fetch(`/proyectos_por_cliente/${clienteId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Limpiar el select de proyectos
+                const proyectoSelect = document.getElementById('proyecto');
+                proyectoSelect.innerHTML = '<option value="" disabled selected>Selecciona un proyecto</option>';
+                
+                // Agregar las opciones de los proyectos
+                data.forEach(proyecto => {
+                    const option = document.createElement('option');
+                    option.value = proyecto.id;
+                    option.textContent = proyecto.nombre;
+                    proyectoSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Usuario - Mi Aplicación{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Editar Usuario</h1>
+    <form method="POST" action="{{ url_for('edit_usuario', id=user[0]) }}" class="form-style">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label> <!-- Cambio de 'fullname' a 'nombre' -->
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ user[1] }}" required> <!-- Cambié 'fullname' a 'nombre' -->
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" value="{{ user[2] }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="rol">Rol:</label> <!-- Cambio de 'role' a 'rol' -->
+            <select id="rol" name="rol" class="form-control" required> <!-- Cambié 'role' a 'rol' -->
+                <option value="Admin" {% if user[3] == 'Admin' %}selected{% endif %}>Admin</option>
+                <option value="Usuario" {% if user[3] == 'Usuario' %}selected{% endif %}>Usuario</option>
+                <option value="Editor" {% if user[3] == 'Editor' %}selected{% endif %}>Editor</option>
+            </select>
+        </div>
+
+        <div class="text-center">
+            <input type="submit" value="Actualizar" class="btn btn-primary">
+        </div>
+    </form>
+    <br>
+    <div class="text-center">
+        <a href="{{ url_for('usuarios') }}" class="btn btn-secondary">Volver a la lista de usuarios</a>
+    </div>
+</div>
+{% endblock %}

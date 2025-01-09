@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Contactos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Lista de Nuevos Clientes</h1>
+    <a href="{{ url_for('add_contact') }}" class="button">Añadir Nuevo Cliente</a> 
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre Completo</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact[0] }}</td>
+                <td>
+                    <!-- Enlace en el nombre completo que lleva al detalle del contacto, si es necesario -->
+                    <a href="#">{{ contact[1] }}</a>
+                </td>
+                <td>{{ contact[3] }}</td>
+                <td>{{ contact[2] }}</td>
+                <td>
+                    <a href="{{ url_for('update_contact', id=contact[0]) }}" class="button">Editar</a>
+                    <form action="{{ url_for('delete_contact', id=contact[0]) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="button button-delete" onclick="return confirmDelete();">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        function confirmDelete() {
+            return confirm("¿Estás seguro de que deseas eliminar este contacto?");
+        }
+    </script>
+</div>
+{% endblock %}

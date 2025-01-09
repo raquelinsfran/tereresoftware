@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Clientes Fijos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center; margin-bottom: 30px;">Lista de Clientes Fijos</h1>
+
+    <!-- Contenedor para búsqueda y botón -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <!-- Formulario de búsqueda -->
+        <form method="GET" action="{{ url_for('clientes_fijos') }}" style="display: flex; align-items: center; gap: 10px;">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Buscar por nombre..." 
+                value="{{ request.args.get('search', '') }}" 
+                style="padding: 8px; width: 300px; border-radius: 4px; border: 1px solid #ccc; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);">
+            <button type="submit" class="button">Buscar</button>
+        </form>
+        
+        <!-- Botón de añadir cliente -->
+        <a href="{{ url_for('add_fixed_client') }}" class="button">Añadir Nuevo Cliente Fijo</a>
+    </div> 
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre Completo</th>
+                <th>Teléfono</th>
+                <th>E-mail</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if clients %}
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client[0] }}</td>  <!-- ID -->
+                    <td>
+                        <a href="{{ url_for('proyectos_cliente_fijo', cliente_id=client[0]) }}">{{ client[1] }}</a> <!-- Nombre Completo -->
+                    </td>
+                    <td>{{ client[2] }}</td>  <!-- Teléfono -->
+                    <td>{{ client[3] }}</td>  <!-- Email -->
+                    <td>
+                        <a href="{{ url_for('edit_fixed_client', id=client[0]) }}" class="button">Editar</a>  
+                        <form action="{{ url_for('delete_fixed_client', id=client[0]) }}" method="POST" style="display:inline;">  
+                            <button type="submit" class="button button-delete" onclick="return confirmDelete();">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5">No se encontraron clientes.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <script>
+        function confirmDelete() {
+            return confirm("¿Estás seguro de que deseas eliminar este cliente fijo?");
+        }
+    </script>
+</div>
+{% endblock %}

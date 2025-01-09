@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Página de Inicio{% endblock %}
+
+{% block content %}
+<style>
+    .index-background {
+        background-image: url("{{ url_for('static', filename='images/images.jpg') }}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        min-height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .jumbotron {
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .jumbotron h1 {
+        font-size: 3.5rem;
+        font-family: 'Pacifico', cursive;
+    }
+
+    .jumbotron p.lead {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+        font-size: 1.2rem;
+        padding: 12px 30px;
+        border-radius: 25px;
+    }
+</style>
+
+<div class="index-background">
+    <div class="jumbotron text-light">
+        <h1 class="display-4">¡Bienvenido a Tereré Software!</h1>
+        <p class="lead">
+            Transformamos la gestión de clientes en algo sencillo, eficiente y personalizable.
+        </p>
+        <hr class="my-4">
+        <p>
+            Descubre herramientas innovadoras para organizar tu base de clientes, generar reportes detallados y administrar proyectos de manera eficaz.
+        </p>
+        <a class="btn btn-danger btn-lg" href="/dashboard" role="button">Ir al Dashboard</a>
+    </div>
+</div>
+{% endblock %}

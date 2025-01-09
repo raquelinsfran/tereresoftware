@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Proyectos del Cliente Fijo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Proyectos del Cliente Fijo</h1>
+    <a href="{{ url_for('add_proyecto', cliente_id=cliente_id) }}" class="button">Añadir Proyecto</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Proyecto</th>
+                <th>Fecha de Entrega</th>
+                <th>Monto $</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proyecto in proyectos %}
+            <tr>
+                <td>{{ proyecto[0] }}</td>
+                <td>{{ proyecto[2] }}</td>
+                <td>{{ proyecto[3] }}</td>
+                <td>{{ proyecto[4] }}</td>
+                <td>{{ proyecto[5] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('delete_proyecto', proyecto_id=proyecto[0]) }}" style="display: inline; margin-left: 50px;">
+                        <button type="submit" class="icon-button" onclick="return confirm('¿Estás seguro de que deseas eliminar este proyecto?')">
+                            <i class="fas fa-trash"></i> 
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Botón para volver a la lista de clientes -->
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{{ url_for('clientes_fijos') }}" class="button" style="padding: 10px 20px; border-radius: 5px; background-color: #007bff; color: white; text-decoration: none;">
+            Volver a la Lista de Clientes
+        </a>
+    </div>
+</div>
+{% endblock %}

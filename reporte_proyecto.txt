@@ -1,0 +1,7 @@
+Reporte de Proyecto
+
+Proyecto: Desarrollo de API
+Fecha de Entrega: 2024-12-20
+Monto: 1200.00
+Estado: Cancelado
+--------------------------------------------------
